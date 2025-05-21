@@ -46,9 +46,9 @@ export function initSocket(io: Server) {
     const userId = (socket as any).userId;
     console.log(`User connected: ${userId} with socket id: ${socket.id}`);
 
-    socket.on('exampleEvent', (data) => {
-      console.log(`Received exampleEvent from user ${userId}:`, data);
-      socket.emit('exampleResponse', { success: true, data: 'Hello from server!' });
+    socket.on('message', (data) => {
+      console.log(`Received message from user ${userId}:`, data);
+      socket.emit('messageResponse', { success: true, data: data, userId:userId});
     });
 
     socket.on('disconnect', () => {
